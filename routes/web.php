@@ -34,8 +34,8 @@ Route::delete('', [UserController::class,'destroy'])->name('users.destroy');
 // Rotas Livros
 Route::get('/library', [LibraryController::class,'index'])->name('library.index');
 Route::get('/library/create', [LibraryController::class,'create'])->name('library.create');
+Route::get('/library/{book}/edit', [LibraryController::class,'edit'])->name('library.edit');
 Route::post('/library', [LibraryController::class,'store'])->name('library.store');
 Route::post('/library/{book}', [LibraryController::class,'show'])->name('library.show');
-Route::post('/library/{book}/edit', [LibraryController::class,'edit'])->name('library.edit');
 Route::put('/library/{book}', [LibraryController::class,'update'])->name('library.update');
 Route::delete('/library/{book}', [LibraryController::class,'destroy'])->name('library.destroy');
