@@ -12032,3 +12032,69 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+/* Estilos para a seção da biblioteca */
+.library-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.library-section h2, .library-section .h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para o grid de mosaico */
+.mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h3, .card .h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Estilos para a paginação */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination .page-link {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination .page-link:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.pagination .active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}

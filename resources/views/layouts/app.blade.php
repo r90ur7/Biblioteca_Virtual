@@ -90,7 +90,8 @@
     </div>
 </body>
 <footer>
-    <p>© 2024 Biblioteca Virtual</p>
+    <p>&copy; {{ date('Y') }} Biblioteca Virtual. Todos os direitos reservados.</p>
+</footer>
 </footer>
 
 </html>

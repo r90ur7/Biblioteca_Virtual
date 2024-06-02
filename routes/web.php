@@ -22,7 +22,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-
 // Rotas Usuário
 Route::get('/users', [UserController::class,'index'])->name('users.index');
 Route::get('/users/create', [UserController::class,'create'])->name('users.create');
