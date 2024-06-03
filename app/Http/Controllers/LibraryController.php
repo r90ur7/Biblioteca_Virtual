@@ -46,13 +46,13 @@ class LibraryController extends Controller
 	public function store(Request $request)
 	{
 		$rules = [
-			'title' => 'max:100',
-			'author' => 'max:100',
-			'genre' => 'max:50',
-			'publication_year' => 'date',
-			'publisher' => 'max:100',
-			'page_count' => 'integer',
-			'synopsis' => 'max:500',
+			'title' => 'required|max:100',
+			'author' => 'required|max:100',
+			'genre' => 'required|max:50',
+			'publication_year' => 'required|date_format:Y',
+			'publisher' => 'required|max:100',
+			'page_count' => 'required|integer|min:0',
+			'synopsis' => 'nullable|max:500',
 		];
 
 		$validator = Validator::make($request->all(), $rules);
