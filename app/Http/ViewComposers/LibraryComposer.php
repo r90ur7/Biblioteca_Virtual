@@ -9,7 +9,8 @@ class LibraryComposer
 {
     public function compose(View $view)
     {
-		$view->with('libraries', Library::paginate(10));
+		$view->with('libraries', Library::orderBy('id', 'desc')->paginate(10));
+
 
     }
 }

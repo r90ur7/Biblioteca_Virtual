@@ -22,7 +22,8 @@ class LibraryController extends Controller
      */
     public function index()
     {
-        $libraries = Library::paginate(10);
+        $libraries = Library::orderBy('id', 'desc')
+    ->paginate(10);
         return response()->view('partials.library', ['libraries' => $libraries]);
     }
 
@@ -33,7 +34,7 @@ class LibraryController extends Controller
      */
     public function create()
     {
-        return view('partials.create');
+        return view('library.create');
     }
 
     /**
@@ -42,15 +43,38 @@ class LibraryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $library = new Library();
-        $library->name = $request->input('name');
-        $library->author = $request->input('author');
-        $library->save();
+	public function store(Request $request)
+	{
+		$rules = [
+			'title' => 'max:100',
+			'author' => 'max:100',
+			'genre' => 'max:50',
+			'publication_year' => 'date',
+			'publisher' => 'max:100',
+			'page_count' => 'integer',
+			'synopsis' => 'max:500',
+		];
 
-        return redirect()->route('library.index')->with('success', 'Library created successfully');
-    }
+		$validator = Validator::make($request->all(), $rules);
+		if ($validator->fails()) {
+			return response()->redirectToRoute('library.create')
+				->withErrors($validator)
+				->withInput();
+		}
+
+		$library = new Library();
+		$library->title = $request->input('title');
+		$library->author = $request->input('author');
+		$library->genre = $request->input('genre');
+		$library->publication_year = $request->input('publication_year');
+		$library->publisher = $request->input('publisher');
+		$library->page_count = $request->input('page_count');
+		$library->synopsis = $request->input('synopsis');
+
+		$library->save();
+
+		return redirect()->route('home')->with('success', 'Library created successfully');
+	}
 
     /**
      * Display the specified resource.
@@ -58,10 +82,9 @@ class LibraryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Library $book)
     {
-        $library = Library::find($id);
-        return view('partials.show', ['library' => $library]);
+        return response()->view('Library.show', ['library' => $book]);
     }
 
     /**
@@ -82,43 +105,6 @@ class LibraryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    // public function update(Request $request, $id)
-    // {
-    //     // Validação dos dados de entrada
-    //     $validated = $request->validate([
-    //         'title' => 'required|string|max:255',
-    //         'author' => 'required|string|max:255',
-    //         'genre' => 'nullable|string|max:255',
-    //         'publication_year' => 'nullable|integer',
-    //         'publisher' => 'nullable|string|max:255',
-    //         'page_count' => 'nullable|integer',
-    //         'synopsis' => 'nullable|string',
-    //     ]);
-
-    //     // Procurar a instância da biblioteca
-    //     $library = Library::find($id);
-
-    //     // Verificar se a instância foi encontrada
-    //     if (!$library) {
-    //         return redirect()->back()->with('error', 'Library not found');
-    //     }
-
-    //     // Atualizar os atributos da biblioteca
-    //     $library->title = $request->input('title');
-    //     $library->author = $request->input('author');
-    //     $library->genre = $request->input('genre');
-    //     $library->publication_year = $request->input('publication_year');
-    //     $library->publisher = $request->input('publisher');
-    //     $library->page_count = $request->input('page_count');
-    //     $library->synopsis = $request->input('synopsis');
-
-    //     // Salvar as alterações
-    //     $library->save();
-
-    //     // Redirecionar com mensagem de sucesso
-    //     return redirect()->route('home')->with('success', 'Library updated successfully');
-    // }
 
     public function update(Request $request, $id)
     {
@@ -169,6 +155,6 @@ class LibraryController extends Controller
         $library = Library::find($id);
         $library->delete();
 
-        return redirect()->route('library.index')->with('success', 'Library deleted successfully');
+        return redirect()->route('home')->with('success', 'Library deleted successfully');
     }
 }
