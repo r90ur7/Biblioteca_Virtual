@@ -1,3 +1,37 @@
+## Getting Started
+
+To get started with this project, follow these steps:
+
+1. Install Composer dependencies by running the following command in the project root directory:
+
+	```bash
+	composer install
+	```
+
+2. Set up the database by running the migration scripts. Make sure you have the correct Laravel version (11) for this project. Run the following command:
+
+	```bash
+	php artisan migrate
+	php artisan db:seed
+	```
+
+3. Seed the database with initial data using the `LibrarySeeder` class. Run the following command:
+
+	```bash
+	php artisan db:seed --class=LibrarySeeder
+	```
+
+4. Start the development server by running the following command:
+
+	```bash
+	php artisan serve
+	```
+
+That's it! You should now have the project set up and ready to use.
+
+> Note: Make sure you have the necessary database credentials configured in your `.env` file before running the migration and seeding commands.
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
