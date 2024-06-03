@@ -1,3 +1,21 @@
+# FILEPATH
+
+	Parameters:
+	- user_id (int): The ID of the user to be edited.
+	- role (int): The role of the user. Only users with role 3 (admin) can perform the edit.
+
+	Returns:
+	- bool: True if the user was successfully edited, False otherwise.
+	"""
+
+	if role != 3:
+		print("You must be an admin to perform this action.")
+		return False
+
+	# Check if the user is an admin
+	# Update the user's role to admin in the database
+	# Code to update the user's role in the database goes here
+
 ## Getting Started
 
 To get started with this project, follow these steps:
@@ -28,6 +46,8 @@ To get started with this project, follow these steps:
 	```
 
 That's it! You should now have the project set up and ready to use.
+
+
 
 > Note: Make sure you have the necessary database credentials configured in your `.env` file before running the migration and seeding commands.
 
