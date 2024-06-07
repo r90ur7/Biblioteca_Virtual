@@ -79,6 +79,7 @@
                                         name="role" required>
                                         <option value="1">User</option>
                                         <option value="2">Writer</option>
+										<option value="3">Admin</option>
                                     </select>
                                     @error('role')
                                         <span class="invalid-feedback" role="alert">
